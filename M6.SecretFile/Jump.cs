@@ -2,7 +2,7 @@
 {
     interface IJump
     {
-        float y { get; set; }
+        float Y { get; set; }
 
         void LiberatorJump();
     }
