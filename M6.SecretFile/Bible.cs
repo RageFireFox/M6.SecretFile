@@ -2,20 +2,18 @@
 {
     struct Bible
     {
-        private string title, author, intro;
+        private string _title, _author, _intro;
+        private short _pages;
 
-        private short pages;
-
-        public void access(string title, string author, string intro)
-        {
-            this.title = title;
-            this.author = author;
-            this.intro = intro;
+        public void Access(string title, string author, string intro) {
+            _title = title;
+            _author = author;
+            _intro = intro;
         }
 
-        public void print()
+        public void Print()
         {
-            Console.WriteLine(author + " написал книгу " + '"' + title + '"');
+            Console.WriteLine($"{_author} написал книгу \"{_title}\"");
         }
     }
 }

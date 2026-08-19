@@ -6,28 +6,20 @@ namespace M6.SecretFile
     internal class Crook : Liberator
     {
 
-        private int shit;
-
-        public ShitRobots level;
-
-        public Crook() { }
-        public Crook(string callsign, int id, int shit, ShitRobots level) : base(callsign, id)
-        {
-            this.shit = shit;
-            this.level = level;
+        private int _shit;
+        public ShitRobots Level { get; set; }
+        public Crook(string callsign = "Unknown", int id = 0, int shit = 0, ShitRobots level = ShitRobots.LowShit) 
+            : base(callsign, id) {
+            _shit = shit;
+            Level = level;
         }
 
-        public override void print()
+        public override void Print()
         {
-            Console.WriteLine($"\nUnit: {this.Callsign}\nID: {this.Id}\nShit level: {this.shit}");
+            Console.WriteLine($"\nUnit: {Callsign}\nID: {Id}\nShit level: {_shit}");
 
-            if (this.level == ShitRobots.LowShit)
-            {
+            if (Level == ShitRobots.LowShit)
                 Console.WriteLine("He is lowshit.");
-            }
         }
-
     }
-
-
 }

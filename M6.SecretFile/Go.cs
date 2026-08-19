@@ -2,7 +2,7 @@
 {
     interface IGo
     {
-        float speed { get; set; }
+        float Speed { get; set; }
 
         void LiberatorGo();
     }

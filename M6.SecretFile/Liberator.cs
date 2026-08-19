@@ -2,144 +2,43 @@
 {
     abstract class Liberator : IGo, IJump
     {
+        private const int MINID = 1;
+        private const int MAXID = 5000;
 
         public static int activeduty;
-        private string callsign;
-        private int id;
-        private byte[] targets;
-        private bool jetpack;
-        protected string creator;
+        private string _callsign;
+        private int _id;
+        private byte[] _targets;
+        private bool _jetpack;
 
-        public string Callsign
-        {
-            get
-            {
-                return callsign;
-            }
-            private set { }
+        public string Callsign => _callsign;   
+        public bool Jetpack => _jetpack; 
+        public byte[] Targets => _targets;
+        public int Id {
+            get => _id;
+            set => _id = (value >= MINID && value <= MAXID) ? 0 : value;
         }
+        
+        public float Speed { get; set; }
+        public float Y { get; set; }
 
-        public bool Jetpack
-        {
-            get
-            {
-                return jetpack;
-            }
-            private set { }
-        }
-
-        public byte[] Targets
-        {
-            get
-            {
-                return targets;
-            }
-            private set { }
-        }
-
-        public int Id
-        {
-            get
-            {
-                Console.WriteLine($"Результат: ");
-                return this.id;
-            }
-
-            set
-            {
-                if (value < 1)
-                    this.id = 0;
-                else if (value > 5000) this.id = 0;
-                else this.id = value;
-            }
-        }
-
-        public float speed { get; set; }
-        public float y { get; set; }
-
-        public Liberator(string callsign, int id, byte[] targets, bool jetpack)
-        {
-            access(callsign, id, targets, jetpack);
+        public Liberator(string callsign = "Unknown", int id = 0, byte[] targets = null, bool jetpack = false) {
+            Access(callsign, id, targets ?? Array.Empty<byte>(), jetpack);
             activeduty++;
         }
-
-        public Liberator(string callsign, int id, byte[] targets)
-        {
-            access(callsign, id, targets);
-            activeduty++;
+        public void Access(string callsign, int id, byte[] targets, bool jetpack) {
+            _callsign = callsign;
+            _id = id;
+            _targets = targets;
+            _jetpack = jetpack;
         }
 
-        public Liberator(string callsign, int id)
-        {
-            access(callsign, id);
-            activeduty++;
-        }
-        public Liberator(string callsign)
-        {
-            access(callsign);
-            activeduty++;
-        }
+        public abstract void Print();
 
-        public Liberator(int id)
-        {
-            access(id);
-            activeduty++;
-        }
-
-
-
-
-        public Liberator() { activeduty++; }
-        public void access(string callsign, int id, byte[] targets, bool jetpack)
-        {
-            this.callsign = callsign;
-            this.id = id;
-            this.targets = targets;
-            this.jetpack = jetpack;
-        }
-
-        public void access(string callsign, int id, byte[] targets)
-        {
-            this.callsign = callsign;
-            this.id = id;
-            this.targets = targets;
-
-        }
-
-        public void access(string callsign, int id)
-        {
-            this.callsign = callsign;
-            this.id = id;
-
-        }
-
-        public void access(string callsign)
-        {
-            this.callsign = callsign;
-        }
-
-        public void access(int id)
-        {
-            this.id = id;
-
-        }
-
-        public abstract void print();
-
-        public static void Active()
-        {
-            Console.WriteLine($"\nActive liberators: {activeduty}");
-        }
-
-        public void LiberatorGo()
-        {
-            Console.WriteLine("Liberator is moving");
-        }
-
-        public void LiberatorJump()
-        {
-            Console.WriteLine("Liberator is jumping");
-        }
+        public static void Active() => Console.WriteLine($"\nActive liberators: {activeduty}");
+        public void LiberatorGo() => Console.WriteLine("Liberator is moving");
+        public void LiberatorJump() => Console.WriteLine("Liberator is jumping");
+        
     }
 
 }

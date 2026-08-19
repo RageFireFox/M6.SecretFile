@@ -6,17 +6,19 @@ namespace m6
     {
         static void Main()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.InputEncoding = System.Text.Encoding.UTF8;
 
             Bible Koran = new Bible();
-            Koran.access("Долбоеб", "Декстер Афанасьевич", "шадэ");
-            Koran.print();
+            Koran.Access("Долбоеб", "Декстер Афанасьевич", "шадэ");
+            Koran.Print();
 
             Crook unit_crook = new Crook("Mellstroy", 10112, 100, ShitRobots.LowShit);
-            unit_crook.print();
+            unit_crook.Print();
             unit_crook.LiberatorGo();
 
             Eblan Fedya = new Eblan("Федя", 01, "Дрочить");
-            Fedya.print();
+            Fedya.Print();
             Fedya.LiberatorJump();
 
             Liberator.Active();
